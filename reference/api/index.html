@@ -1,0 +1,1770 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://terradue.github.io/pystac-ext-insar/reference/api/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Python API - InSAR PySTAC extension</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Python API";
+        var mkdocs_page_input_path = "reference/api.md";
+        var mkdocs_page_url = "/pystac-ext-insar/reference/api/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> InSAR PySTAC extension
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Tutorials</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tutorials/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tutorials/first-steps/">First steps</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">How-to guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../how-to/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../how-to/install/">Install</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../how-to/use-extension/">Work with InSAR metadata</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Reference</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../fields/">InSAR fields</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Python API</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#pystac.extensions.insar">insar</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#pystac.extensions.insar.INSAR_EXTENSION_HOOKS">INSAR_EXTENSION_HOOKS</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#pystac.extensions.insar.SCHEMA_URI">SCHEMA_URI</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#pystac.extensions.insar.InsarExtension">InsarExtension</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#pystac.extensions.insar.InsarExtension.geocoding_dem">geocoding_dem</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#pystac.extensions.insar.InsarExtension.height_of_ambiguity">height_of_ambiguity</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#pystac.extensions.insar.InsarExtension.perpendicular_baseline">perpendicular_baseline</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#pystac.extensions.insar.InsarExtension.processing_dem">processing_dem</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#pystac.extensions.insar.InsarExtension.reference_datetime">reference_datetime</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#pystac.extensions.insar.InsarExtension.secondary_datetime">secondary_datetime</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#pystac.extensions.insar.InsarExtension.temporal_baseline">temporal_baseline</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#pystac.extensions.insar.InsarExtension.apply">apply</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#pystac.extensions.insar.InsarExtension.ext">ext</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#pystac.extensions.insar.InsarExtension.get_schema_uri">get_schema_uri</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#pystac.extensions.insar.InsarExtension.summaries">summaries</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#pystac.extensions.insar.SummariesInsarExtension">SummariesInsarExtension</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#pystac.extensions.insar.ItemInsarExtension">ItemInsarExtension</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#pystac.extensions.insar.AssetInsarExtension">AssetInsarExtension</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#pystac.extensions.insar.ItemAssetsInsarExtension">ItemAssetsInsarExtension</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#pystac.extensions.insar.InsarExtensionHooks">InsarExtensionHooks</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Explanation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../explanation/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../explanation/architecture/">Architecture</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">InSAR PySTAC extension</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Reference</li>
+      <li class="breadcrumb-item active">Python API</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/Terradue/pystac-ext-insar/edit/main/docs/reference/api.md">Edit on pystac-ext-insar</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <!--
+Copyright 2026 Terradue
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<h1 id="python-api">Python API<a class="headerlink" href="#python-api" title="Permanent link">&para;</a></h1>
+<p>Import the extension from <code>pystac.extensions.insar</code>. Use <code>InsarExtension.ext()</code> for Items, Assets, and item asset definitions, and <code>InsarExtension.summaries()</code> for Collections.</p>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<h2 id="pystac.extensions.insar" class="doc doc-heading">
+            <code>pystac.extensions.insar</code>
+
+
+<a href="#pystac.extensions.insar" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents first">
+
+        <p>Implementation of the STAC :stac-ext:<code>InSAR Extension &lt;insar&gt;</code>.</p>
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="pystac.extensions.insar.INSAR_EXTENSION_HOOKS" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">INSAR_EXTENSION_HOOKS</span><span class="p">:</span> <span class="n">ExtensionHooks</span> <span class="o">=</span> <span class="n">InsarExtensionHooks</span><span class="p">()</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+<a href="#pystac.extensions.insar.INSAR_EXTENSION_HOOKS" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="pystac.extensions.insar.SCHEMA_URI" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">SCHEMA_URI</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">'https://stac-extensions.github.io/insar/v1.0.0/schema.json'</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+<a href="#pystac.extensions.insar.SCHEMA_URI" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="pystac.extensions.insar.InsarExtension" class="doc doc-heading">
+            <code>InsarExtension</code>
+
+
+<a href="#pystac.extensions.insar.InsarExtension" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="typing.Generic">Generic</span>[<span title="pystac.extensions.insar.T">T</span>]</code>, <code><span title="pystac.extensions.base.PropertiesExtension">PropertiesExtension</span></code>, <code><span title="pystac.extensions.base.ExtensionManagementMixin">ExtensionManagementMixin</span>[<span title="pystac.Item">Item</span> | <span title="pystac.Collection">Collection</span>]</code></p>
+
+
+
+        <p>Item/Asset/ItemAssetDefinition InSAR properties.
+For Collection-level support, use InsarExtension.summaries(collection, ...).</p>
+
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>pystac/extensions/insar.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 66</span>
+<span class="normal"> 67</span>
+<span class="normal"> 68</span>
+<span class="normal"> 69</span>
+<span class="normal"> 70</span>
+<span class="normal"> 71</span>
+<span class="normal"> 72</span>
+<span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span>
+<span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span>
+<span class="normal">235</span>
+<span class="normal">236</span>
+<span class="normal">237</span>
+<span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span>
+<span class="normal">242</span>
+<span class="normal">243</span>
+<span class="normal">244</span>
+<span class="normal">245</span>
+<span class="normal">246</span>
+<span class="normal">247</span>
+<span class="normal">248</span>
+<span class="normal">249</span>
+<span class="normal">250</span>
+<span class="normal">251</span>
+<span class="normal">252</span>
+<span class="normal">253</span>
+<span class="normal">254</span>
+<span class="normal">255</span>
+<span class="normal">256</span>
+<span class="normal">257</span>
+<span class="normal">258</span>
+<span class="normal">259</span>
+<span class="normal">260</span>
+<span class="normal">261</span>
+<span class="normal">262</span>
+<span class="normal">263</span>
+<span class="normal">264</span>
+<span class="normal">265</span>
+<span class="normal">266</span>
+<span class="normal">267</span>
+<span class="normal">268</span>
+<span class="normal">269</span>
+<span class="normal">270</span>
+<span class="normal">271</span>
+<span class="normal">272</span>
+<span class="normal">273</span>
+<span class="normal">274</span>
+<span class="normal">275</span>
+<span class="normal">276</span>
+<span class="normal">277</span>
+<span class="normal">278</span>
+<span class="normal">279</span>
+<span class="normal">280</span>
+<span class="normal">281</span>
+<span class="normal">282</span>
+<span class="normal">283</span>
+<span class="normal">284</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">InsarExtension</span><span class="p">(</span>
+    <span class="n">Generic</span><span class="p">[</span><span class="n">T</span><span class="p">],</span>
+    <span class="n">PropertiesExtension</span><span class="p">,</span>
+    <span class="n">ExtensionManagementMixin</span><span class="p">[</span><span class="n">pystac</span><span class="o">.</span><span class="n">Item</span> <span class="o">|</span> <span class="n">pystac</span><span class="o">.</span><span class="n">Collection</span><span class="p">],</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Item/Asset/ItemAssetDefinition InSAR properties.</span>
+<span class="sd">    For Collection-level support, use InsarExtension.summaries(collection, ...).</span>
+<span class="sd">    """</span>
+
+    <span class="n">name</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">"insar"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"insar"</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_schema_uri</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Return the published schema URI for this extension."""</span>
+        <span class="k">return</span> <span class="n">SCHEMA_URI</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">ext</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">obj</span><span class="p">:</span> <span class="n">T</span><span class="p">,</span> <span class="n">add_if_missing</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InsarExtension</span><span class="p">[</span><span class="n">T</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Extend an Item, Asset, or ItemAssetDefinition with InSAR properties.</span>
+
+<span class="sd">        Applies to:</span>
+<span class="sd">          - Item (properties)</span>
+<span class="sd">          - Asset (extra_fields), including Item and Collection assets</span>
+<span class="sd">          - ItemAssetDefinition (collection.item_assets[*].properties)</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">pystac</span><span class="o">.</span><span class="n">Item</span><span class="p">):</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">ensure_has_extension</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">add_if_missing</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"InsarExtension[T]"</span><span class="p">,</span> <span class="n">ItemInsarExtension</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">pystac</span><span class="o">.</span><span class="n">Asset</span><span class="p">):</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">ensure_owner_has_extension</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">add_if_missing</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"InsarExtension[T]"</span><span class="p">,</span> <span class="n">AssetInsarExtension</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">pystac</span><span class="o">.</span><span class="n">ItemAssetDefinition</span><span class="p">):</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">ensure_owner_has_extension</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">add_if_missing</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"InsarExtension[T]"</span><span class="p">,</span> <span class="n">ItemAssetsInsarExtension</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">pystac</span><span class="o">.</span><span class="n">Collection</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">pystac</span><span class="o">.</span><span class="n">ExtensionTypeError</span><span class="p">(</span>
+                <span class="s2">"InSAR extension does not apply to type 'Collection'. "</span>
+                <span class="s2">"Hint: Did you mean to use `InsarExtension.summaries` instead?"</span>
+            <span class="p">)</span>
+        <span class="k">raise</span> <span class="n">pystac</span><span class="o">.</span><span class="n">ExtensionTypeError</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_ext_error_message</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">summaries</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span> <span class="n">obj</span><span class="p">:</span> <span class="n">pystac</span><span class="o">.</span><span class="n">Collection</span><span class="p">,</span> <span class="n">add_if_missing</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SummariesInsarExtension</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Return the InSAR summaries helper for a collection.</span>
+<span class="sd">        """</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">ensure_has_extension</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">add_if_missing</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">SummariesInsarExtension</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">apply</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">perpendicular_baseline</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">temporal_baseline</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">height_of_ambiguity</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">reference_datetime</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">secondary_datetime</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">processing_dem</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">geocoding_dem</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Sets the properties for the InSAR extension.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            perpendicular_baseline: The perpendicular baseline in meters.</span>
+<span class="sd">            temporal_baseline: The temporal baseline in days.</span>
+<span class="sd">            height_of_ambiguity: The height of ambiguity in meters.</span>
+<span class="sd">            reference_datetime: The reference acquisition datetime.</span>
+<span class="sd">            secondary_datetime: The secondary acquisition datetime.</span>
+<span class="sd">            processing_dem: The DEM used during interferogram processing.</span>
+<span class="sd">            geocoding_dem: The DEM used during geocoding.</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">perpendicular_baseline</span> <span class="o">=</span> <span class="n">perpendicular_baseline</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">temporal_baseline</span> <span class="o">=</span> <span class="n">temporal_baseline</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">height_of_ambiguity</span> <span class="o">=</span> <span class="n">height_of_ambiguity</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reference_datetime</span> <span class="o">=</span> <span class="n">reference_datetime</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">secondary_datetime</span> <span class="o">=</span> <span class="n">secondary_datetime</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">processing_dem</span> <span class="o">=</span> <span class="n">processing_dem</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">geocoding_dem</span> <span class="o">=</span> <span class="n">geocoding_dem</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">perpendicular_baseline</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Gets or sets the perpendicular baseline in meters.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            The perpendicular baseline in meters, or None if not set.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_property</span><span class="p">(</span><span class="n">PERP_BASELINE_PROP</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span>
+
+    <span class="nd">@perpendicular_baseline</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">perpendicular_baseline</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Sets the perpendicular baseline in meters.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            v: The perpendicular baseline in meters, or None to remove the property.</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_property</span><span class="p">(</span>
+            <span class="n">PERP_BASELINE_PROP</span><span class="p">,</span>
+            <span class="n">_validated_number</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">PERP_BASELINE_PROP</span><span class="p">),</span>
+            <span class="n">pop_if_none</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">temporal_baseline</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Gets or sets the temporal baseline in days.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_property</span><span class="p">(</span><span class="n">TEMP_BASELINE_PROP</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span>
+
+    <span class="nd">@temporal_baseline</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">temporal_baseline</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Sets the temporal baseline in days.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            v: The temporal baseline in days, or None to remove the property.</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_property</span><span class="p">(</span>
+            <span class="n">TEMP_BASELINE_PROP</span><span class="p">,</span>
+            <span class="n">_validated_number</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">TEMP_BASELINE_PROP</span><span class="p">),</span>
+            <span class="n">pop_if_none</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">height_of_ambiguity</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Gets or sets the height of ambiguity in meters.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_property</span><span class="p">(</span><span class="n">HOA_PROP</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span>
+
+    <span class="nd">@height_of_ambiguity</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">height_of_ambiguity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Sets the height of ambiguity in meters.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            v: The height of ambiguity in meters, or None to remove the property.</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_property</span><span class="p">(</span>
+            <span class="n">HOA_PROP</span><span class="p">,</span>
+            <span class="n">_validated_number</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">HOA_PROP</span><span class="p">),</span>
+            <span class="n">pop_if_none</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">reference_datetime</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">datetime</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Gets or sets the reference acquisition datetime.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="n">map_opt</span><span class="p">(</span><span class="n">str_to_datetime</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_property</span><span class="p">(</span><span class="n">REF_DT_PROP</span><span class="p">,</span> <span class="nb">str</span><span class="p">))</span>
+
+    <span class="nd">@reference_datetime</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">reference_datetime</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Sets the reference acquisition datetime.</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_property</span><span class="p">(</span><span class="n">REF_DT_PROP</span><span class="p">,</span> <span class="n">map_opt</span><span class="p">(</span><span class="n">datetime_to_str</span><span class="p">,</span> <span class="n">v</span><span class="p">),</span> <span class="n">pop_if_none</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">secondary_datetime</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">datetime</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Gets or sets the secondary acquisition datetime.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="n">map_opt</span><span class="p">(</span><span class="n">str_to_datetime</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_property</span><span class="p">(</span><span class="n">SEC_DT_PROP</span><span class="p">,</span> <span class="nb">str</span><span class="p">))</span>
+
+    <span class="nd">@secondary_datetime</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">secondary_datetime</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Sets the secondary acquisition datetime.</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_property</span><span class="p">(</span><span class="n">SEC_DT_PROP</span><span class="p">,</span> <span class="n">map_opt</span><span class="p">(</span><span class="n">datetime_to_str</span><span class="p">,</span> <span class="n">v</span><span class="p">),</span> <span class="n">pop_if_none</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">processing_dem</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Gets or sets the processing DEM.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_property</span><span class="p">(</span><span class="n">PROC_DEM_PROP</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+
+    <span class="nd">@processing_dem</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">processing_dem</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Sets the processing DEM.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            v: The processing DEM, or None to remove the property.</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_property</span><span class="p">(</span>
+            <span class="n">PROC_DEM_PROP</span><span class="p">,</span>
+            <span class="n">_validated_str</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">PROC_DEM_PROP</span><span class="p">),</span>
+            <span class="n">pop_if_none</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">geocoding_dem</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Gets or sets the geocoding DEM.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_property</span><span class="p">(</span><span class="n">GEOC_DEM_PROP</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+
+    <span class="nd">@geocoding_dem</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">geocoding_dem</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Sets the geocoding DEM.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            v: The geocoding DEM, or None to remove the property.</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_property</span><span class="p">(</span>
+            <span class="n">GEOC_DEM_PROP</span><span class="p">,</span>
+            <span class="n">_validated_str</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">GEOC_DEM_PROP</span><span class="p">),</span>
+            <span class="n">pop_if_none</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="pystac.extensions.insar.InsarExtension.geocoding_dem" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">geocoding_dem</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+      <small class="doc doc-label doc-label-writable"><code>writable</code></small>
+  </span>
+
+<a href="#pystac.extensions.insar.InsarExtension.geocoding_dem" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Gets or sets the geocoding DEM.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="pystac.extensions.insar.InsarExtension.height_of_ambiguity" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">height_of_ambiguity</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+      <small class="doc doc-label doc-label-writable"><code>writable</code></small>
+  </span>
+
+<a href="#pystac.extensions.insar.InsarExtension.height_of_ambiguity" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Gets or sets the height of ambiguity in meters.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="pystac.extensions.insar.InsarExtension.perpendicular_baseline" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">perpendicular_baseline</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+      <small class="doc doc-label doc-label-writable"><code>writable</code></small>
+  </span>
+
+<a href="#pystac.extensions.insar.InsarExtension.perpendicular_baseline" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Gets or sets the perpendicular baseline in meters.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="float">float</span> | None</code>
+              –
+              <div class="doc-md-description">
+                <p>The perpendicular baseline in meters, or None if not set.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="pystac.extensions.insar.InsarExtension.processing_dem" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">processing_dem</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+      <small class="doc doc-label doc-label-writable"><code>writable</code></small>
+  </span>
+
+<a href="#pystac.extensions.insar.InsarExtension.processing_dem" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Gets or sets the processing DEM.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="pystac.extensions.insar.InsarExtension.reference_datetime" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">reference_datetime</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">|</span> <span class="kc">None</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+      <small class="doc doc-label doc-label-writable"><code>writable</code></small>
+  </span>
+
+<a href="#pystac.extensions.insar.InsarExtension.reference_datetime" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Gets or sets the reference acquisition datetime.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="pystac.extensions.insar.InsarExtension.secondary_datetime" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">secondary_datetime</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">|</span> <span class="kc">None</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+      <small class="doc doc-label doc-label-writable"><code>writable</code></small>
+  </span>
+
+<a href="#pystac.extensions.insar.InsarExtension.secondary_datetime" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Gets or sets the secondary acquisition datetime.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="pystac.extensions.insar.InsarExtension.temporal_baseline" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">temporal_baseline</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+      <small class="doc doc-label doc-label-writable"><code>writable</code></small>
+  </span>
+
+<a href="#pystac.extensions.insar.InsarExtension.temporal_baseline" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Gets or sets the temporal baseline in days.</p>
+
+    </div>
+
+</div>
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="pystac.extensions.insar.InsarExtension.apply" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">apply</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">perpendicular_baseline</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">temporal_baseline</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">height_of_ambiguity</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">reference_datetime</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">secondary_datetime</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">processing_dem</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">geocoding_dem</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span></code>
+
+<a href="#pystac.extensions.insar.InsarExtension.apply" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Sets the properties for the InSAR extension.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>perpendicular_baseline</code></b>
+                  (<code><span title="float">float</span> | <span title="int">int</span> | None</code>, default:
+                      <code>None</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>The perpendicular baseline in meters.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>temporal_baseline</code></b>
+                  (<code><span title="float">float</span> | <span title="int">int</span> | None</code>, default:
+                      <code>None</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>The temporal baseline in days.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>height_of_ambiguity</code></b>
+                  (<code><span title="float">float</span> | <span title="int">int</span> | None</code>, default:
+                      <code>None</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>The height of ambiguity in meters.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>reference_datetime</code></b>
+                  (<code><span title="datetime.datetime">datetime</span> | None</code>, default:
+                      <code>None</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>The reference acquisition datetime.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>secondary_datetime</code></b>
+                  (<code><span title="datetime.datetime">datetime</span> | None</code>, default:
+                      <code>None</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>The secondary acquisition datetime.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>processing_dem</code></b>
+                  (<code><span title="str">str</span> | None</code>, default:
+                      <code>None</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>The DEM used during interferogram processing.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>geocoding_dem</code></b>
+                  (<code><span title="str">str</span> | None</code>, default:
+                      <code>None</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>The DEM used during geocoding.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>pystac/extensions/insar.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">apply</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">perpendicular_baseline</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">temporal_baseline</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">height_of_ambiguity</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">reference_datetime</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">secondary_datetime</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">processing_dem</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">geocoding_dem</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Sets the properties for the InSAR extension.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        perpendicular_baseline: The perpendicular baseline in meters.</span>
+<span class="sd">        temporal_baseline: The temporal baseline in days.</span>
+<span class="sd">        height_of_ambiguity: The height of ambiguity in meters.</span>
+<span class="sd">        reference_datetime: The reference acquisition datetime.</span>
+<span class="sd">        secondary_datetime: The secondary acquisition datetime.</span>
+<span class="sd">        processing_dem: The DEM used during interferogram processing.</span>
+<span class="sd">        geocoding_dem: The DEM used during geocoding.</span>
+<span class="sd">    """</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">perpendicular_baseline</span> <span class="o">=</span> <span class="n">perpendicular_baseline</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">temporal_baseline</span> <span class="o">=</span> <span class="n">temporal_baseline</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">height_of_ambiguity</span> <span class="o">=</span> <span class="n">height_of_ambiguity</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">reference_datetime</span> <span class="o">=</span> <span class="n">reference_datetime</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">secondary_datetime</span> <span class="o">=</span> <span class="n">secondary_datetime</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">processing_dem</span> <span class="o">=</span> <span class="n">processing_dem</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">geocoding_dem</span> <span class="o">=</span> <span class="n">geocoding_dem</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="pystac.extensions.insar.InsarExtension.ext" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">ext</span><span class="p">(</span><span class="n">obj</span><span class="p">:</span> <span class="n">T</span><span class="p">,</span> <span class="n">add_if_missing</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InsarExtension</span><span class="p">[</span><span class="n">T</span><span class="p">]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-classmethod"><code>classmethod</code></small>
+  </span>
+
+<a href="#pystac.extensions.insar.InsarExtension.ext" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Extend an Item, Asset, or ItemAssetDefinition with InSAR properties.</p>
+
+
+<details class="applies-to" open>
+  <summary>Applies to</summary>
+  <ul>
+<li>Item (properties)</li>
+<li>Asset (extra_fields), including Item and Collection assets</li>
+<li>ItemAssetDefinition (collection.item_assets[*].properties)</li>
+</ul>
+</details>
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>pystac/extensions/insar.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@classmethod</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">ext</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">obj</span><span class="p">:</span> <span class="n">T</span><span class="p">,</span> <span class="n">add_if_missing</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InsarExtension</span><span class="p">[</span><span class="n">T</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Extend an Item, Asset, or ItemAssetDefinition with InSAR properties.</span>
+
+<span class="sd">    Applies to:</span>
+<span class="sd">      - Item (properties)</span>
+<span class="sd">      - Asset (extra_fields), including Item and Collection assets</span>
+<span class="sd">      - ItemAssetDefinition (collection.item_assets[*].properties)</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">pystac</span><span class="o">.</span><span class="n">Item</span><span class="p">):</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">ensure_has_extension</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">add_if_missing</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"InsarExtension[T]"</span><span class="p">,</span> <span class="n">ItemInsarExtension</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">pystac</span><span class="o">.</span><span class="n">Asset</span><span class="p">):</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">ensure_owner_has_extension</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">add_if_missing</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"InsarExtension[T]"</span><span class="p">,</span> <span class="n">AssetInsarExtension</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">pystac</span><span class="o">.</span><span class="n">ItemAssetDefinition</span><span class="p">):</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">ensure_owner_has_extension</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">add_if_missing</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"InsarExtension[T]"</span><span class="p">,</span> <span class="n">ItemAssetsInsarExtension</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">pystac</span><span class="o">.</span><span class="n">Collection</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="n">pystac</span><span class="o">.</span><span class="n">ExtensionTypeError</span><span class="p">(</span>
+            <span class="s2">"InSAR extension does not apply to type 'Collection'. "</span>
+            <span class="s2">"Hint: Did you mean to use `InsarExtension.summaries` instead?"</span>
+        <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">pystac</span><span class="o">.</span><span class="n">ExtensionTypeError</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_ext_error_message</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="pystac.extensions.insar.InsarExtension.get_schema_uri" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_schema_uri</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-classmethod"><code>classmethod</code></small>
+  </span>
+
+<a href="#pystac.extensions.insar.InsarExtension.get_schema_uri" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Return the published schema URI for this extension.</p>
+
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>pystac/extensions/insar.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@classmethod</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_schema_uri</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Return the published schema URI for this extension."""</span>
+    <span class="k">return</span> <span class="n">SCHEMA_URI</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="pystac.extensions.insar.InsarExtension.summaries" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">summaries</span><span class="p">(</span><span class="n">obj</span><span class="p">:</span> <span class="n">pystac</span><span class="o">.</span><span class="n">Collection</span><span class="p">,</span> <span class="n">add_if_missing</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SummariesInsarExtension</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-classmethod"><code>classmethod</code></small>
+  </span>
+
+<a href="#pystac.extensions.insar.InsarExtension.summaries" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Return the InSAR summaries helper for a collection.</p>
+
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>pystac/extensions/insar.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@classmethod</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">summaries</span><span class="p">(</span>
+    <span class="bp">cls</span><span class="p">,</span> <span class="n">obj</span><span class="p">:</span> <span class="n">pystac</span><span class="o">.</span><span class="n">Collection</span><span class="p">,</span> <span class="n">add_if_missing</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SummariesInsarExtension</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Return the InSAR summaries helper for a collection.</span>
+<span class="sd">    """</span>
+    <span class="bp">cls</span><span class="o">.</span><span class="n">ensure_has_extension</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">add_if_missing</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">SummariesInsarExtension</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="pystac.extensions.insar.SummariesInsarExtension" class="doc doc-heading">
+            <code>SummariesInsarExtension</code>
+
+
+<a href="#pystac.extensions.insar.SummariesInsarExtension" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="pystac.extensions.base.SummariesExtension">SummariesExtension</span></code></p>
+
+
+
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>pystac/extensions/insar.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">323</span>
+<span class="normal">324</span>
+<span class="normal">325</span>
+<span class="normal">326</span>
+<span class="normal">327</span>
+<span class="normal">328</span>
+<span class="normal">329</span>
+<span class="normal">330</span>
+<span class="normal">331</span>
+<span class="normal">332</span>
+<span class="normal">333</span>
+<span class="normal">334</span>
+<span class="normal">335</span>
+<span class="normal">336</span>
+<span class="normal">337</span>
+<span class="normal">338</span>
+<span class="normal">339</span>
+<span class="normal">340</span>
+<span class="normal">341</span>
+<span class="normal">342</span>
+<span class="normal">343</span>
+<span class="normal">344</span>
+<span class="normal">345</span>
+<span class="normal">346</span>
+<span class="normal">347</span>
+<span class="normal">348</span>
+<span class="normal">349</span>
+<span class="normal">350</span>
+<span class="normal">351</span>
+<span class="normal">352</span>
+<span class="normal">353</span>
+<span class="normal">354</span>
+<span class="normal">355</span>
+<span class="normal">356</span>
+<span class="normal">357</span>
+<span class="normal">358</span>
+<span class="normal">359</span>
+<span class="normal">360</span>
+<span class="normal">361</span>
+<span class="normal">362</span>
+<span class="normal">363</span>
+<span class="normal">364</span>
+<span class="normal">365</span>
+<span class="normal">366</span>
+<span class="normal">367</span>
+<span class="normal">368</span>
+<span class="normal">369</span>
+<span class="normal">370</span>
+<span class="normal">371</span>
+<span class="normal">372</span>
+<span class="normal">373</span>
+<span class="normal">374</span>
+<span class="normal">375</span>
+<span class="normal">376</span>
+<span class="normal">377</span>
+<span class="normal">378</span>
+<span class="normal">379</span>
+<span class="normal">380</span>
+<span class="normal">381</span>
+<span class="normal">382</span>
+<span class="normal">383</span>
+<span class="normal">384</span>
+<span class="normal">385</span>
+<span class="normal">386</span>
+<span class="normal">387</span>
+<span class="normal">388</span>
+<span class="normal">389</span>
+<span class="normal">390</span>
+<span class="normal">391</span>
+<span class="normal">392</span>
+<span class="normal">393</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">SummariesInsarExtension</span><span class="p">(</span><span class="n">SummariesExtension</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_singleton_list_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">lst</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">summaries</span><span class="o">.</span><span class="n">get_list</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">lst</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="n">lst</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_set_singleton_list_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Any</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">summaries</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">summaries</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="p">[</span><span class="n">value</span><span class="p">])</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">apply</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">reference_datetime</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">processing_dem</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">geocoding_dem</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reference_datetime</span> <span class="o">=</span> <span class="n">reference_datetime</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">processing_dem</span> <span class="o">=</span> <span class="n">processing_dem</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">geocoding_dem</span> <span class="o">=</span> <span class="n">geocoding_dem</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">reference_datetime</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">datetime</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">raw</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_singleton_list_value</span><span class="p">(</span><span class="n">REF_DT_PROP</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">raw</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">raw</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">str_to_datetime</span><span class="p">(</span><span class="n">raw</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"Invalid </span><span class="si">{</span><span class="n">REF_DT_PROP</span><span class="si">}</span><span class="s2"> summary: expected RFC3339 string in list, "</span>
+            <span class="sa">f</span><span class="s2">"got </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">raw</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">"</span>
+        <span class="p">)</span>
+
+    <span class="nd">@reference_datetime</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">reference_datetime</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_singleton_list_value</span><span class="p">(</span><span class="n">REF_DT_PROP</span><span class="p">,</span> <span class="n">map_opt</span><span class="p">(</span><span class="n">datetime_to_str</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">processing_dem</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">raw</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_singleton_list_value</span><span class="p">(</span><span class="n">PROC_DEM_PROP</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">raw</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">raw</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">raw</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"Invalid </span><span class="si">{</span><span class="n">PROC_DEM_PROP</span><span class="si">}</span><span class="s2"> summary: expected string in list, got </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">raw</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">"</span>
+        <span class="p">)</span>
+
+    <span class="nd">@processing_dem</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">processing_dem</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_singleton_list_value</span><span class="p">(</span><span class="n">PROC_DEM_PROP</span><span class="p">,</span> <span class="n">_validated_str</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">PROC_DEM_PROP</span><span class="p">))</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">geocoding_dem</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">raw</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_singleton_list_value</span><span class="p">(</span><span class="n">GEOC_DEM_PROP</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">raw</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">raw</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">raw</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"Invalid </span><span class="si">{</span><span class="n">GEOC_DEM_PROP</span><span class="si">}</span><span class="s2"> summary: expected string in list, got </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">raw</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">"</span>
+        <span class="p">)</span>
+
+    <span class="nd">@geocoding_dem</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">geocoding_dem</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_singleton_list_value</span><span class="p">(</span><span class="n">GEOC_DEM_PROP</span><span class="p">,</span> <span class="n">_validated_str</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">GEOC_DEM_PROP</span><span class="p">))</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="pystac.extensions.insar.ItemInsarExtension" class="doc doc-heading">
+            <code>ItemInsarExtension</code>
+
+
+<a href="#pystac.extensions.insar.ItemInsarExtension" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="InsarExtension (pystac.extensions.insar.InsarExtension)" href="#pystac.extensions.insar.InsarExtension">InsarExtension</a>[<span title="pystac.Item">Item</span>]</code></p>
+
+
+
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>pystac/extensions/insar.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">287</span>
+<span class="normal">288</span>
+<span class="normal">289</span>
+<span class="normal">290</span>
+<span class="normal">291</span>
+<span class="normal">292</span>
+<span class="normal">293</span>
+<span class="normal">294</span>
+<span class="normal">295</span>
+<span class="normal">296</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">ItemInsarExtension</span><span class="p">(</span><span class="n">InsarExtension</span><span class="p">[</span><span class="n">pystac</span><span class="o">.</span><span class="n">Item</span><span class="p">]):</span>
+    <span class="n">item</span><span class="p">:</span> <span class="n">pystac</span><span class="o">.</span><span class="n">Item</span>
+    <span class="n">properties</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">:</span> <span class="n">pystac</span><span class="o">.</span><span class="n">Item</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">item</span> <span class="o">=</span> <span class="n">item</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">properties</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">properties</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">"&lt;ItemInsarExtension Item id=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">item</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">&gt;"</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="pystac.extensions.insar.AssetInsarExtension" class="doc doc-heading">
+            <code>AssetInsarExtension</code>
+
+
+<a href="#pystac.extensions.insar.AssetInsarExtension" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="InsarExtension (pystac.extensions.insar.InsarExtension)" href="#pystac.extensions.insar.InsarExtension">InsarExtension</a>[<span title="pystac.Asset">Asset</span>]</code></p>
+
+
+
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>pystac/extensions/insar.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">299</span>
+<span class="normal">300</span>
+<span class="normal">301</span>
+<span class="normal">302</span>
+<span class="normal">303</span>
+<span class="normal">304</span>
+<span class="normal">305</span>
+<span class="normal">306</span>
+<span class="normal">307</span>
+<span class="normal">308</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AssetInsarExtension</span><span class="p">(</span><span class="n">InsarExtension</span><span class="p">[</span><span class="n">pystac</span><span class="o">.</span><span class="n">Asset</span><span class="p">]):</span>
+    <span class="n">asset_href</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">properties</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">asset</span><span class="p">:</span> <span class="n">pystac</span><span class="o">.</span><span class="n">Asset</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">asset_href</span> <span class="o">=</span> <span class="n">asset</span><span class="o">.</span><span class="n">href</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">properties</span> <span class="o">=</span> <span class="n">asset</span><span class="o">.</span><span class="n">extra_fields</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">"&lt;AssetInsarExtension Asset href=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">asset_href</span><span class="si">}</span><span class="s2">&gt;"</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="pystac.extensions.insar.ItemAssetsInsarExtension" class="doc doc-heading">
+            <code>ItemAssetsInsarExtension</code>
+
+
+<a href="#pystac.extensions.insar.ItemAssetsInsarExtension" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="InsarExtension (pystac.extensions.insar.InsarExtension)" href="#pystac.extensions.insar.InsarExtension">InsarExtension</a>[<span title="pystac.ItemAssetDefinition">ItemAssetDefinition</span>]</code></p>
+
+
+
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>pystac/extensions/insar.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">311</span>
+<span class="normal">312</span>
+<span class="normal">313</span>
+<span class="normal">314</span>
+<span class="normal">315</span>
+<span class="normal">316</span>
+<span class="normal">317</span>
+<span class="normal">318</span>
+<span class="normal">319</span>
+<span class="normal">320</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">ItemAssetsInsarExtension</span><span class="p">(</span><span class="n">InsarExtension</span><span class="p">[</span><span class="n">pystac</span><span class="o">.</span><span class="n">ItemAssetDefinition</span><span class="p">]):</span>
+    <span class="n">asset_defn</span><span class="p">:</span> <span class="n">pystac</span><span class="o">.</span><span class="n">ItemAssetDefinition</span>
+    <span class="n">properties</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item_asset</span><span class="p">:</span> <span class="n">pystac</span><span class="o">.</span><span class="n">ItemAssetDefinition</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">asset_defn</span> <span class="o">=</span> <span class="n">item_asset</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">properties</span> <span class="o">=</span> <span class="n">item_asset</span><span class="o">.</span><span class="n">properties</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">"&lt;ItemAssetsInsarExtension ItemAssetDefinition&gt;"</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="pystac.extensions.insar.InsarExtensionHooks" class="doc doc-heading">
+            <code>InsarExtensionHooks</code>
+
+
+<a href="#pystac.extensions.insar.InsarExtensionHooks" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="pystac.extensions.hooks.ExtensionHooks">ExtensionHooks</span></code></p>
+
+
+
+        <p>Register InSAR schema identifiers and supported STAC object types.</p>
+
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>pystac/extensions/insar.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">396</span>
+<span class="normal">397</span>
+<span class="normal">398</span>
+<span class="normal">399</span>
+<span class="normal">400</span>
+<span class="normal">401</span>
+<span class="normal">402</span>
+<span class="normal">403</span>
+<span class="normal">404</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">InsarExtensionHooks</span><span class="p">(</span><span class="n">ExtensionHooks</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Register InSAR schema identifiers and supported STAC object types."""</span>
+
+    <span class="n">schema_uri</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">SCHEMA_URI</span>
+    <span class="n">prev_extension_ids</span><span class="p">:</span> <span class="n">ClassVar</span><span class="p">[</span><span class="nb">set</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"insar"</span><span class="p">}</span>
+    <span class="n">stac_object_types</span><span class="p">:</span> <span class="n">ClassVar</span><span class="p">[</span><span class="nb">set</span><span class="p">[</span><span class="n">pystac</span><span class="o">.</span><span class="n">STACObjectType</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">pystac</span><span class="o">.</span><span class="n">STACObjectType</span><span class="o">.</span><span class="n">COLLECTION</span><span class="p">,</span>
+        <span class="n">pystac</span><span class="o">.</span><span class="n">STACObjectType</span><span class="o">.</span><span class="n">ITEM</span><span class="p">,</span>
+    <span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../fields/" class="btn btn-neutral float-left" title="InSAR fields"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../explanation/" class="btn btn-neutral float-right" title="Overview">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/Terradue/pystac-ext-insar" class="fa fa-code-fork" style="color: #fcfcfc"> pystac-ext-insar</a>
+        </span>
+    
+    
+      <span><a href="../fields/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../explanation/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

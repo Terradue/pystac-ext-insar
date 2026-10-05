@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://terradue.github.io/pystac-ext-insar/reference/fields/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>InSAR fields - InSAR PySTAC extension</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "InSAR fields";
+        var mkdocs_page_input_path = "reference/fields.md";
+        var mkdocs_page_url = "/pystac-ext-insar/reference/fields/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> InSAR PySTAC extension
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Tutorials</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tutorials/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tutorials/first-steps/">First steps</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">How-to guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../how-to/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../how-to/install/">Install</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../how-to/use-extension/">Work with InSAR metadata</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Reference</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../">Overview</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">InSAR fields</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#runtime-checks">Runtime checks</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#collection-summaries">Collection summaries</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../api/">Python API</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Explanation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../explanation/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../explanation/architecture/">Architecture</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">InSAR PySTAC extension</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Reference</li>
+      <li class="breadcrumb-item active">InSAR fields</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/Terradue/pystac-ext-insar/edit/main/docs/reference/fields.md">Edit on pystac-ext-insar</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <!--
+Copyright 2026 Terradue
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<h1 id="insar-fields">InSAR fields<a class="headerlink" href="#insar-fields" title="Permanent link">&para;</a></h1>
+<p>The following properties are exposed by <code>InsarExtension</code> for Items, Assets, and item asset definitions. Values are stored in Item <code>properties</code>, Asset <code>extra_fields</code>, or the item asset definition's <code>properties</code> dictionary.</p>
+<table>
+<thead>
+<tr>
+<th>STAC field</th>
+<th>Python property</th>
+<th>Meaning and setter behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>insar:perpendicular_baseline</code></td>
+<td><code>perpendicular_baseline</code></td>
+<td>Perpendicular baseline in meters; accepts integers and floats and stores a float.</td>
+</tr>
+<tr>
+<td><code>insar:temporal_baseline</code></td>
+<td><code>temporal_baseline</code></td>
+<td>Temporal baseline in days; accepts integers and floats and stores a float.</td>
+</tr>
+<tr>
+<td><code>insar:height_of_ambiguity</code></td>
+<td><code>height_of_ambiguity</code></td>
+<td>Height of ambiguity in meters; accepts integers and floats and stores a float.</td>
+</tr>
+<tr>
+<td><code>insar:reference_datetime</code></td>
+<td><code>reference_datetime</code></td>
+<td>Reference acquisition datetime; accepts a Python <code>datetime</code> and stores a string.</td>
+</tr>
+<tr>
+<td><code>insar:secondary_datetime</code></td>
+<td><code>secondary_datetime</code></td>
+<td>Secondary acquisition datetime; accepts a Python <code>datetime</code> and stores a string.</td>
+</tr>
+<tr>
+<td><code>insar:processing_dem</code></td>
+<td><code>processing_dem</code></td>
+<td>DEM used during interferogram processing; accepts a string.</td>
+</tr>
+<tr>
+<td><code>insar:geocoding_dem</code></td>
+<td><code>geocoding_dem</code></td>
+<td>DEM used during geocoding; accepts a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Every getter can return <code>None</code> for an absent field. Every setter accepts <code>None</code> to remove its field. <code>apply()</code> defaults all arguments to <code>None</code>, so omitted values are removed rather than preserved.</p>
+<h2 id="runtime-checks">Runtime checks<a class="headerlink" href="#runtime-checks" title="Permanent link">&para;</a></h2>
+<p>Numeric setters reject booleans and nonnumeric values with <code>ValueError</code>. They do not enforce ranges, finiteness, or consistency with acquisition dates. DEM setters reject non-string values with <code>ValueError</code>; they do not check whether a DEM identifier exists or a URL is reachable, and they accept empty strings.</p>
+<p>Datetime getters parse stored strings using PySTAC's datetime utilities. Use timezone-aware Python datetimes when writing acquisition times. Reading existing metadata does not run the setter checks again.</p>
+<h2 id="collection-summaries">Collection summaries<a class="headerlink" href="#collection-summaries" title="Permanent link">&para;</a></h2>
+<p><code>InsarExtension.summaries(collection)</code> exposes these properties:</p>
+<table>
+<thead>
+<tr>
+<th>Python property</th>
+<th>Stored summary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>reference_datetime</code></td>
+<td>Single-element list containing a datetime string.</td>
+</tr>
+<tr>
+<td><code>processing_dem</code></td>
+<td>Single-element list containing a DEM string.</td>
+</tr>
+<tr>
+<td><code>geocoding_dem</code></td>
+<td>Single-element list containing a DEM string.</td>
+</tr>
+</tbody>
+</table>
+<p>Summary getters return the first element, or <code>None</code> when no list is available or the list is empty. Reference datetimes are parsed to Python datetimes. A non-string first element raises <code>ValueError</code>, except that a first element of <code>None</code> is returned as <code>None</code>.</p>
+<p>Setters replace the entire list with a single-element list. Assigning <code>None</code> removes the summary. The helper does not expose baseline, height-of-ambiguity, or secondary-datetime summaries, and does not aggregate Item values automatically.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../" class="btn btn-neutral float-left" title="Overview"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../api/" class="btn btn-neutral float-right" title="Python API">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/Terradue/pystac-ext-insar" class="fa fa-code-fork" style="color: #fcfcfc"> pystac-ext-insar</a>
+        </span>
+    
+    
+      <span><a href="../" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../api/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
