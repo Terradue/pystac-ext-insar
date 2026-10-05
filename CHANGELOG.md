@@ -43,5 +43,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial project release.
 
-[Unreleased]: https://github.com/Terradue/pystac-ext-insar/compare/0.1.0...HEAD
-[1.0.0]: https://github.com/Terradue/pystac-ext-insar/releases/tag/0.1.0
+[Unreleased]: https://github.com/Terradue/pystac-ext-insar/compare/1.0.0...HEAD
+[1.0.0]: https://github.com/Terradue/pystac-ext-insar/releases/tag/1.0.0
